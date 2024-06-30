@@ -2,8 +2,9 @@ import "./Home.css";
 import addIcon from "./plus (1).png";
 
 import ToDocard from "../../components/ToDocard/ToDocard";
-import { useState} from "react";
+import { useState,useEffect} from "react";
 import toast, {Toaster} from 'react-hot-toast';
+
 
 
 
@@ -93,6 +94,7 @@ function Home () {
         
     </div>
     
+    <Toaster position="top-right"/>
  
   </div>
     
