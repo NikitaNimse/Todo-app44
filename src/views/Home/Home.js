@@ -3,6 +3,7 @@ import addIcon from "./plus (1).png";
 
 import ToDocard from "../../components/ToDocard/ToDocard";
 import { useState} from "react";
+import toast, {Toaster} from 'react-hot-toast';
 
 
 
@@ -43,6 +44,21 @@ function Home () {
          onChange={(e)=>setNewTask(e.target.value)
        }
          />
+
+<select className="category-select" 
+         value={category}
+         onChange={(e)=>setCategory(e.target.value)}
+       
+         >
+         <option  value="">Category</option>
+          <option value="learning"> Learning  </option>
+          <option value="work">Work</option>
+          <option value="personal">Personal</option>
+          <option value="shopping">Shopping</option>
+          <option value="health">Health</option>
+          <option value="other">Other</option>
+         </select>
+
         
 
         < img 
@@ -50,15 +66,15 @@ function Home () {
         alt="addicon" 
         className="Icon" 
         onClick={()=>{
-         if (newTask === "" ){
-         
+          if (newTask === "" || category===""){
+            toast.error('task or category cant be empty!')
             return
           }
           
           setTodolist([...todolist,{task:newTask, category:category}])
           setNewTask ("")
           setCategory ("")
-         
+          toast.success('task added successfully!')
         }}
         />
         
