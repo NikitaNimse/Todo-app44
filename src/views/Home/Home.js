@@ -15,6 +15,19 @@ function Home () {
    const [newTask, setNewTask] = useState("")
    const [category, setCategory] = useState("")
 
+   
+   useEffect (() =>{
+    const savedtodolist =localStorage.getItem("todolist")
+    if(savedtodolist){
+     setTodolist(JSON.parse(savedtodolist))
+    }
+    },[])
+
+  useEffect(() =>{
+   if(todolist.length === 0) return
+   localStorage.setItem("todolist", JSON.stringify (todolist))
+  }, [todolist])
+
   return (<>
   <div>
      <h1 className="heading"> To Do App📒</h1>
