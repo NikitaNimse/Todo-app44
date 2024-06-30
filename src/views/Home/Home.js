@@ -4,9 +4,7 @@ import addIcon from "./plus (1).png";
 import ToDocard from "../../components/ToDocard/ToDocard";
 import { useState,useEffect} from "react";
 import toast, {Toaster} from 'react-hot-toast';
-
-
-
+import Swal from "sweetalert2";
 
 function Home () {
     
@@ -28,6 +26,30 @@ function Home () {
    if(todolist.length === 0) return
    localStorage.setItem("todolist", JSON.stringify (todolist))
   }, [todolist])
+
+  function deleteItem(index){
+    Swal.fire({
+      title:'Are You sure',
+      text:'You Want to Delete this task',
+      icon:'warning',
+      showCancelButton:true,
+    } ) .then((result) => {
+      if(!result.isConfirmed){
+         return
+      }
+     const newTodolist = todolist.filter((item,i)=>{
+       if(i != index){
+        return true
+      }
+      else{
+        return false
+      }
+     })
+     setTodolist(newTodolist )
+   })
+  }
+   
+
 
   return (<>
   <div>
